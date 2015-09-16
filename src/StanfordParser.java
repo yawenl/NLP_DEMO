@@ -49,7 +49,6 @@ public class StanfordParser {
 			Tree constituencyTree = sentence.get(TreeAnnotation.class);  //constituency tree of a sentence
 			ArrayList<Tree> ClauseList = CutSentence(constituencyTree); 
 			
-<<<<<<< HEAD
 			Tree nextClause = null;
 			for(int i = 0; i < ClauseList.size(); i ++) {
 				if(i+1 < ClauseList.size()) {
@@ -58,15 +57,10 @@ public class StanfordParser {
 					nextClause = null;
 				}
 				PrintSentence(ClauseList.get(i), nextClause);
-=======
-			for(Tree clause : ClauseList) {
-				PrintSentence(clause);
->>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 			}
 		}
 	}
 	
-<<<<<<< HEAD
 	private String getLabelString(Tree node) {
 		String nodeString = node.nodeString();
 		String labelString = "";
@@ -93,13 +87,10 @@ public class StanfordParser {
 //	if(parent != null) {
 //		parent.removeChild(parent.objectIndexOf(clause));
 //	}	
-=======
->>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 	
 	private ArrayList<Tree> CutSentence(Tree constituencyTree) {
 		ArrayList<Tree> ClauseList = new ArrayList<Tree>();
 		for (Tree clause : constituencyTree) {
-<<<<<<< HEAD
 			if(isClauseStart(clause) && !clause.isLeaf()) {
 				if (clause.firstChild().nodeString().contains("IN")) {
 					clause.removeChild(0);
@@ -110,44 +101,17 @@ public class StanfordParser {
 						ClauseList.add(clause);
 					}
 				}	
-=======
-			if(ClauseList.size() == 0) {
-				ClauseList.add(clause.deepCopy());
-			}
-			if(clause.nodeString().contains("SBAR") && !clause.isLeaf()) {
-				if (clause.firstChild().nodeString().contains("IN")) {
-					clause.removeChild(0);
-				}
-				ClauseList.add(clause.deepCopy());
-				Tree parent = clause.parent(constituencyTree);
-				if(parent != null) {
-					parent.removeChild(parent.objectIndexOf(clause));
-				}		
->>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 			}
 		}
 		return ClauseList;
 	}
 	
-<<<<<<< HEAD
 	private void PrintSentence(Tree clauseTree, Tree nextClause) {
 		StringBuilder TempClause = new StringBuilder();
 		for (Tree clause : clauseTree) {
 			if(clause.equals(nextClause)) {
 				break;
 			}
-=======
-	private void PrintSentence(Tree clauseTree) {
-		StringBuilder TempClause = new StringBuilder();
-		boolean LoopStart = false;
-		for (Tree clause : clauseTree) {
-			if(clause.nodeString().contains("SBAR") && !clause.isLeaf() && LoopStart) {
-				break;
-			}
-			if(!LoopStart) {
-				LoopStart = true;
-			}
->>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 			if(clause.isLeaf()) {
 				TempClause.append(clause.nodeString() + " ");
 			}
