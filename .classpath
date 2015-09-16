@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry exported="true" kind="lib" path="/Users/qingzhou/Desktop/499/stanford-corenlp-full-2015-04-20/ejml-0.23.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/qingzhou/Desktop/499/stanford-corenlp-full-2015-04-20/javax.json-api-1.0-sources.jar"/>
@@ -20,5 +21,8 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/Users/qingzhou/Desktop/499/stanford-corenlp-full-2015-04-20/xom-1.2.10-src.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/qingzhou/Desktop/499/stanford-corenlp-full-2015-04-20/xom.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+>>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 	<classpathentry kind="output" path="bin"/>
 </classpath>
