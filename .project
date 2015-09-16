@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
+	<name>StanfordParserDemo</name>
+=======
 	<name>NLP_demo</name>
+>>>>>>> 293ce2878ef66200b3e03078ca2a636c3b24ff91
 	<comment></comment>
 	<projects>
 	</projects>
