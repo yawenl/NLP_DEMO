@@ -1,9 +1,3 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Set;
-import java.util.Vector;
-
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -14,6 +8,11 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
+
 /*class PotentialTrashNode {
 	public Tree Node;
 	public int index;
@@ -22,24 +21,17 @@ import edu.stanford.nlp.util.CoreMap;
 		this.index = index;
 	}
 }*/
-/*class Word {
-	public int index;
-	public boolean isStart;
-	Word(int i, boolean start) {
-		this.index = i;
-		this.isStart = start;
-	}
-}*/
+
 public class StanfordParser {
 
 	public static void main(String[] args) {
 		StanfordParser parser = new StanfordParser();
-		parser.parse("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
+		parser.Test("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
 	}
 
 	private StanfordCoreNLP pipeline;
 	int index_counter = 0;
-	List<Integer> start_word_records;
+	List<Integer> start_word_records = new ArrayList<Integer>();
 	public StanfordParser() {
 		Properties parserProperties = new Properties();
 		parserProperties.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
@@ -67,7 +59,6 @@ public class StanfordParser {
 			}
 		}
 	}
-	
 	
 	private ArrayList<Tree> CutSentence(Tree constituencyTree) {
 		ArrayList<Tree> ClauseList = new ArrayList<Tree>();
@@ -128,7 +119,7 @@ public class StanfordParser {
 			for(Tree clause : ClauseList) {
 				PrintSentence(clause);
 			}
-			List<IndexedWord> start_word_vertices = null;
+			List<IndexedWord> start_word_vertices = ArrayList<Integer>();
 			for(Integer index : start_word_records) {
 				for(IndexedWord node : vertices) {
 					if(node.index() == index) {
@@ -136,6 +127,17 @@ public class StanfordParser {
 					}
 				}
 			}
+			ArrayList<Set<IndexedWord>> clauses_of_indexedwords = null;
+			for(IndexedWord index : start_word_vertices) {
+				clauses_of_indexedwords.add(semanticGraph.getChildren(index));
+			}
+			
+			for(Set<IndexedWord> temp_set : clauses_of_indexedwords) {
+				for(IndexedWord index : temp_set) {
+					System.out.println(index.word());
+				}
+			}
+			
 /*			for(Tree clause : ClauseList) {
 				PrintSentence(clause);
 			}*/
