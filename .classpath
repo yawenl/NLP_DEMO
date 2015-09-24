@@ -10,7 +10,7 @@
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/jollyday.jar"/>
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/jollyday-0.4.7-sources.jar"/>
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/protobuf.jar"/>
-	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2.jar"/>
+	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2.jar" sourcepath="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-sources.jar"/>
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-javadoc.jar" sourcepath="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-sources.jar"/>
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-models.jar"/>
 	<classpathentry kind="lib" path="A:/Projects/stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-sources.jar"/>

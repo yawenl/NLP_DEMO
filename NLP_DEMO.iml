@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES />
         <JAVADOC>
@@ -16,7 +16,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <ANNOTATIONS>
           <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-models.jar!/" />
@@ -26,12 +26,59 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES />
         <JAVADOC />
         <SOURCES>
           <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/ejml-0.23.jar!/META-INF" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/ejml-0.23.jar!/META-INF" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/ejml-0.23.jar!/META-INF" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/ejml-0.23.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/javax.json.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/joda-time.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/jollyday.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/protobuf.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/stanford-corenlp-3.5.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/xom.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/javax.json-api-1.0-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/joda-time-2.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/jollyday-0.4.7-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../stanford-corenlp-full-2015-04-20/stanford-corenlp-full-2015-04-20/xom-1.2.10-src.jar!/src" />
         </SOURCES>
       </library>
     </orderEntry>
