@@ -13,17 +13,17 @@ import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
+import edu.stanford.nlp.util.ArrayCoreMap;
 import edu.stanford.nlp.util.CoreMap;
 
-class PotentialTrashNode {
-	public Tree Node;
-	public int index;
-
-	PotentialTrashNode(Tree Node, int index) {
-		this.Node = Node.deepCopy();
-		this.index = index;
-	}
-}
+/**
+ * A StanfordParser uses constituencyTree and semanticGraph to analyze a given sentence in String.
+ * The main function parse will create clauses based on the given text.
+ * (Logic goes here)
+ * 
+ * @author dramage
+ * @author rafferty
+ */
 
 public class StanfordParser {
 	public static void main(String[] args) {
@@ -92,12 +92,6 @@ public class StanfordParser {
 		return isSBAR || isS || isSBARQ || isSINV || isSQ;
 	}
 
-	// Sample code to remove child node from parent node
-	// Tree parent = clause.parent(constituencyTree);
-	// if(parent != null) {
-	// parent.removeChild(parent.objectIndexOf(clause));
-	// }
-
 	private ArrayList<Tree> CutSentence(Tree constituencyTree) {
 		ArrayList<Tree> ClauseList = new ArrayList<Tree>();
 		for (Tree clause : constituencyTree) {
@@ -146,7 +140,14 @@ public class StanfordParser {
 			PrintSentence(ClauseList.get(i), nextClause);
 		}
 	}
-
+	/**
+	 * Returns a Clause created based on the clause tree. This function assumes
+     * clasueTree is the correct starting point
+     *
+	 * @param clauseTree - the starting point of the clause
+	 * @param nextClause - the starting point of the next clause, used to figure
+	 * the end point of the current clause
+	 */
 	private Clause CreateClause(Tree clauseTree, Tree nextClause) {
 		Clause wordList = new Clause();
 		for (Tree clause : clauseTree) {
@@ -154,6 +155,10 @@ public class StanfordParser {
 				break;
 			}
 			Tree first_child = clause.firstChild();
+			// The word only shows up at leaf node. Its corresponding tag/label is shown in its direct parent.
+			// Here the first_child is potentially a leaf node.
+			// If a word is found, create a IndexedWord with label equivalent to this word's tag and with
+			// value equivalent to the word string
 			if(first_child!=null && first_child.isLeaf()) {
 				CoreLabel tmp_label = new CoreLabel();
 				tmp_label.setTag(clause.label().value());
@@ -161,15 +166,14 @@ public class StanfordParser {
 				tmp_label.setIndex(index_counter++);
 				wordList.addIndexedWord(new IndexedWord(tmp_label));
 			}
-			/*
-			 * if(clause.isLeaf()) { index_counter++; if(!findFirstWord) {
-			 * start_word_records.add(index_counter); findFirstWord = true; }
-			 * TempClause.append(clause.nodeString() + " "); }
-			 */
 		}
 		return wordList;
 	}
-
+	/**
+	 * Returns a ArrayList of Clause created based on ClauseList. 
+     *
+	 * @param ClauseList - ArrayList tree nodes that represent the starting points of clauses
+	 */
 	private ArrayList<Clause> CreateClauses(ArrayList<Tree> ClauseList) {
 		Tree nextClause = null;
 		ArrayList<Clause> IndexedWordClauses = new ArrayList<Clause>();
@@ -183,7 +187,11 @@ public class StanfordParser {
 		}
 		return IndexedWordClauses;
 	}
-
+	/**
+	 * Returns void. A copy of parse()
+     *
+	 * @param text - inpput text
+	 */
 	public void Test(String text) {
 		Annotation annotation = new Annotation(text);
 		pipeline.annotate(annotation);
@@ -203,23 +211,6 @@ public class StanfordParser {
 			Set<IndexedWord> vertices = semanticGraph.vertexSet();
 			CreateClauses(ClauseList);
 			List<IndexedWord> start_word_vertices = new ArrayList<IndexedWord>();
-			/*
-			 * for(Integer index : start_word_records) { for(IndexedWord node :
-			 * vertices) { System.out.println("node.index() = " + node.index());
-			 * System.out.println("node = " + node.toString());
-			 * System.out.println("index = " + index); if(node.index() == index)
-			 * { start_word_vertices.add(node); } } }
-			 */
-			// ArrayList<Set<IndexedWord>> clauses_of_indexedwords = null;
-			// for(IndexedWord index : start_word_vertices) {
-			// clauses_of_indexedwords.add(semanticGraph.getChildren(index));
-			// }
-			//
-			// for(Set<IndexedWord> temp_set : clauses_of_indexedwords) {
-			// for(IndexedWord index : temp_set) {
-			// System.out.println(index.word());
-			// }
-			// }
 		}
 	}
 }
