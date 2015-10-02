@@ -21,8 +21,8 @@ import edu.stanford.nlp.util.CoreMap;
  * The main function parse will create clauses based on the given text.
  * (Logic goes here)
  * 
- * @author dramage
- * @author rafferty
+ * @author yawenluo 
+ * @author qingzhou
  */
 
 public class StanfordParser {
@@ -187,6 +187,7 @@ public class StanfordParser {
 		}
 		return IndexedWordClauses;
 	}
+	
 	/**
 	 * Returns void. A copy of parse()
      *
