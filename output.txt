@@ -1,0 +1,95 @@
+
+ 0 sentence:  
+
+constituency tree: (ROOT
+  (S
+    (NP (JJ Political) (NNS leaders))
+    (VP (VBD pledged)
+      (SBAR (IN that)
+        (S
+          (NP
+            (NP
+              (NP (NN construction))
+              (PP (IN of)
+                (NP (DT the) (JJ so-called) (NNP Freedom) (NNP Tower))))
+            (: --)
+            (SBAR
+              (WHNP (WDT which))
+              (S
+                (VP (MD will)
+                  (VP
+                    (VP (VB rise)
+                      (NP (CD 1,776) (NNS feet))
+                      (PP (IN into)
+                        (NP (DT the) (NN air))))
+                    (CC and)
+                    (VP (VB be)
+                      (NP
+                        (NP (DT the) (NN world) (POS 's))
+                        (JJS tallest) (NN building)))))))
+            (: --))
+          (VP (MD will)
+            (VP (VB be)
+              (VP (VBN finished)
+                (PP (IN on)
+                  (NP (NN schedule)))
+                (PP (IN by)
+                  (NP
+                    (NP (DT the) (NN end))
+                    (PP (IN of)
+                      (NP (CD 2008)))))))))))))
+
+relation:amod
+relation:nsubj
+relation:nmod:of
+relation:acl:relcl
+relation:acl:relcl
+relation:case
+relation:det
+relation:amod
+relation:compound
+relation:nsubj
+relation:aux
+relation:dobj
+relation:nmod:into
+relation:cc
+relation:conj:and
+relation:nummod
+relation:case
+relation:det
+relation:det
+relation:case
+relation:cop
+relation:nmod:poss
+relation:amod
+null/JJ
+null/NNS
+null/VBD
+null/IN
+null/NN
+null/IN
+null/DT
+null/JJ
+null/NNP
+null/NNP
+null/:
+null/WDT
+null/MD
+null/VB
+null/CD
+null/NNS
+null/IN
+null/DT
+null/NN
+null/CC
+null/VB
+null/DT
+null/NN
+null/POS
+null/JJS
+null/NN
+null/:
+Political leaders pledged 
+that construction of the so-called Freedom Tower -- 
+which will rise 1,776 feet into the air and be the world 's tallest building 
+-- 
