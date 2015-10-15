@@ -67,4 +67,12 @@ public class Clause {
 		}
 		System.out.println();
 	}
+	
+	public IndexedWord get(Integer index) {
+		return wordList.get(index);
+	}
+	
+	public void remove(Integer index) {
+		wordList.remove(index);
+	}
 }

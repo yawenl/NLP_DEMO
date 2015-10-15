@@ -408,6 +408,39 @@ public class StanfordParser {
 			}
 		} // end for i
 	}
+	
+	/**
+	 * Use the words from index index_start to index_end to create a new clause and remove these elements in old clause
+     *
+	 * @param ClauseList - ArrayList tree nodes that represent the starting points of clauses
+	 * @param index_start - starting index of the word
+	 * @param index_end - ending index of the word
+	 */
+	public void CreateClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) {
+		Integer list_start_index = -1;
+		Integer clause_start_index = -1;
+		for(int i=0; i < ClauseList.size(); i++) {
+			Clause temp_clause = ClauseList.get(i);
+			for(int j=0; j < temp_clause.size(); j++) {
+				IndexedWord temp_word = temp_clause.get(j);
+				if(temp_word.index() == index_start) {
+					list_start_index = i;
+					clause_start_index = j;
+					break;
+				}
+			}
+			if(list_start_index != -1)
+				break;
+		}
+		Clause old_clause = ClauseList.get(list_start_index);
+		Clause new_caluse = new Clause();
+		for(int i = 0; i <= clause_start_index+(index_end-index_start); ++i) {
+			new_caluse.addIndexedWord(old_clause.get(i));
+			old_clause.remove(clause_start_index);
+		}
+		ClauseList.set(list_start_index, old_clause);
+		ClauseList.add(list_start_index, new_caluse);
+	}
 }
 
 
