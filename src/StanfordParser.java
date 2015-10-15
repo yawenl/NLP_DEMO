@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Set;
 
+import edu.stanford.nlp.ling.CoreAnnotations.NamedEntityTagAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.PartOfSpeechAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -31,7 +35,7 @@ public class StanfordParser {
 	public static void main(String[] args) {
 		StanfordParser parser = new StanfordParser();
 		ArrayList<String> testSentences = new ArrayList<String>();
-		testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
+//		testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
 //		testSentences.add("A senior coalition official in Iraq said the body, which was found by U.S. military police west of Baghdad, appeared to have been thrown from a vehicle");
 //		testSentences.add("Paul Bremer, the top U.S. civilian administrator in Iraq, and Iraq's new president, Ghazi al-Yawar, visited the northern Iraqi city of Kirkuk.");
 //		testSentences.add("The Philippine Stock Exchange Composite Index rose 0.1 percent to 1573.65.");
@@ -63,7 +67,7 @@ public class StanfordParser {
 //		testSentences.add("Most Americans are familiar with the Food Guide Pyramid-- but a lot of people don't understand how to use it and the government claims that the proof is that two out of three Americans are fat.");
 //		testSentences.add("Further surprises were revealed in the spacecraft's photographs of a hazy orange Titan -- the largest of Saturn's 31 moons, about the size of the planet Mercury.");
 //		testSentences.add("Jessica Litman, a law professor at Michigan's Wayne State University, has specialized in copyright law and Internet law for more than 20 years.");
-//		testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
+		testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
 		
 		PrintStream out;
 		try {
@@ -77,7 +81,6 @@ public class StanfordParser {
 		for (int i = 0; i < testSentences.size(); ++i) {
 			System.out.println("\n " + i + " sentence:  \n");
 			parser.parse(testSentences.get(i), i);
-			
 		}		
 	}
 
@@ -104,6 +107,10 @@ public class StanfordParser {
 	/**
 	 * @param text - input text
 	 */
+	
+	// using semantic graph
+	// using name entity recognition
+	// using customized class
 	public void parse(String text, Integer sentenceIndex) {
 		Annotation annotation = new Annotation(text);
 		pipeline.annotate(annotation);
@@ -124,6 +131,21 @@ public class StanfordParser {
 			// Clause version of clause list
 			ArrayList<Clause> ClauseList2 = CreateClauses(ClauseList, sentenceIndex); 
 			
+			int indexCount = 0;
+			for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
+		        // this is the NER label of the token
+		        String ne = token.get(NamedEntityTagAnnotation.class);       
+		        // System.out.println("ne is " + ne);
+		        for (Clause clause : ClauseList2) {
+		        	for (IndexedWord word : clause.wordList()) {
+		        		if (word.index() == indexCount) {
+		        			word.setNER(ne);
+		        		}
+		        	}
+		        }
+		        indexCount++;
+			}
+			
 			// print word, word type, word index in sentence
 //			for(int i = 0; i < ClauseList2.size(); i++){
 //				ClauseList2.get(i).print();
@@ -141,7 +163,7 @@ public class StanfordParser {
 			removeUselessWords(ClauseList2, semanticGraph);
 			
 			
-			System.out.println("\n Print clause list (polished): ");
+			System.out.println("\nPrint clause list (polished): ");
 			//print clause list (polished)
 			for(Clause c : ClauseList2) {
 				c.printWordList();
