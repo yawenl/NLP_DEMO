@@ -20,7 +20,6 @@ proposition.
 
 Things to do:
 - get the word node of provided word_index in FindProposition() is not finished
----------
 - Replace which/that with the actual object
 - Add subject when one clause does not have one
 How: which has a relation (nsubjpass) with the verb
