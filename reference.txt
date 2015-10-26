@@ -34,3 +34,4 @@ Things to do:
 - get the word node of provided word_index in FindProposition() is not finished
 - test ReplacePropositionWithSubject()
 - add subject to a clause that does not have one
+- need to check whether getSource() returns a IndexedWord with index (in FindProposition())
