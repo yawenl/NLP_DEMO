@@ -158,7 +158,7 @@ public class StanfordParser {
 			PrintRelations(ClauseList2, semanticGraph);
 			
 			//print all words relations among the every pairs of clauses
-			PrintCaluseRelations(ClauseList2, semanticGraph);
+			PrintClauseRelations(ClauseList2, semanticGraph);
 			
 			removeUselessWords(ClauseList2, semanticGraph);
 			
@@ -372,7 +372,7 @@ public class StanfordParser {
 		}
 	}
 	
-	public void PrintCaluseRelations(ArrayList<Clause> clauseList, SemanticGraph graph) {
+	public void PrintClauseRelations(ArrayList<Clause> clauseList, SemanticGraph graph) {
 		for(int i = 0; i < clauseList.size(); i++) {
 			for(int j = 0; j < clauseList.size(); j++) {
 				if (i >= j) {
@@ -462,6 +462,20 @@ public class StanfordParser {
 		}
 		ClauseList.set(list_start_index, old_clause);
 		ClauseList.add(list_start_index, new_caluse);
+	}
+	
+	public int FindProposition(int word_index, Tree clauseTree) {
+		Integer PropositionIndex = word_index;
+		//TODO: get the word node of provided word_index
+		Tree current_node;
+		
+		while(current_node.toString() != "PP") {
+			current_node = clauseTree.parent(current_node);
+			if(current_node.isLeaf()) {
+				PropositionIndex--;
+			}
+		}
+		return PropositionIndex;
 	}
 }
 

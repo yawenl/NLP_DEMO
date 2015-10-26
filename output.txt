@@ -1,0 +1,110 @@
+
+ 0 sentence:  
+
+constituency tree: (ROOT
+  (S
+    (NP (JJ Political) (NNS leaders))
+    (VP (VBD pledged)
+      (SBAR (IN that)
+        (S
+          (NP
+            (NP (NN construction))
+            (PP (IN of)
+              (NP (DT the) (JJ so-called) (NNP Freedom) (NNP Tower)))
+            (, ,)
+            (SBAR
+              (WHNP (WDT which))
+              (S
+                (VP (MD will)
+                  (VP
+                    (VP (VB rise)
+                      (NP (CD 1,776) (NNS feet))
+                      (PP (IN into)
+                        (NP (DT the) (NN air))))
+                    (CC and)
+                    (VP (VB be)
+                      (NP
+                        (NP (DT the) (NN world) (POS 's))
+                        (JJS tallest) (NN building)))))))
+            (, ,))
+          (VP (MD will)
+            (VP (VB be)
+              (VP (VBN finished)
+                (PP (IN on)
+                  (NP (NN schedule)))
+                (PP (IN by)
+                  (NP
+                    (NP (DT the) (NN end))
+                    (PP (IN of)
+                      (NP (CD 2008)))))))))))))
+
+Print clauses list: 
+Political leaders pledged 
+that construction of the so-called Freedom Tower 
+which will rise 1,776 feet into the air and be the world 's tallest building 
+will be finished on schedule by the end of 2008 
+
+
+Print all words relations among the sentences:
+Reln: leaders/NNS -> Political/JJ (amod)
+Reln: pledged/VBD -> leaders/NNS (nsubj)
+Reln: pledged/VBD -> finished/VBN (ccomp)
+Reln: construction/NN -> Tower/NNP (nmod:of)
+Reln: construction/NN -> rise/VB (acl:relcl)
+Reln: construction/NN -> building/NN (acl:relcl)
+Reln: Tower/NNP -> of/IN (case)
+Reln: Tower/NNP -> the/DT (det)
+Reln: Tower/NNP -> so-called/JJ (amod)
+Reln: Tower/NNP -> Freedom/NNP (compound)
+Reln: rise/VB -> which/WDT (nsubj)
+Reln: rise/VB -> will/MD (aux)
+Reln: rise/VB -> feet/NNS (dobj)
+Reln: rise/VB -> air/NN (nmod:into)
+Reln: rise/VB -> and/CC (cc)
+Reln: rise/VB -> building/NN (conj:and)
+Reln: feet/NNS -> 1,776/CD (nummod)
+Reln: air/NN -> into/IN (case)
+Reln: air/NN -> the/DT (det)
+Reln: world/NN -> the/DT (det)
+Reln: world/NN -> 's/POS (case)
+Reln: building/NN -> be/VB (cop)
+Reln: building/NN -> world/NN (nmod:poss)
+Reln: building/NN -> tallest/JJS (amod)
+Reln: finished/VBN -> that/IN (mark)
+Reln: finished/VBN -> construction/NN (nsubjpass)
+Reln: finished/VBN -> will/MD (aux)
+Reln: finished/VBN -> be/VB (auxpass)
+Reln: finished/VBN -> schedule/NN (nmod:on)
+Reln: schedule/NN -> on/IN (case)
+
+Print out Reln b/t clause 0 and clause 1
+Reln: pledged/VBD -> leaders/NNS (nsubj)
+
+Print out Reln b/t clause 0 and clause 2
+
+Print out Reln b/t clause 0 and clause 3
+
+Print out Reln b/t clause 1 and clause 2
+Reln: construction/NN -> Tower/NNP (nmod:of)
+Reln: construction/NN -> rise/VB (acl:relcl)
+Reln: Tower/NNP -> of/IN (case)
+Reln: Tower/NNP -> the/DT (det)
+Reln: Tower/NNP -> so-called/JJ (amod)
+Reln: Tower/NNP -> Freedom/NNP (compound)
+
+Print out Reln b/t clause 1 and clause 3
+Reln: pledged/VBD -> finished/VBN (ccomp)
+Reln: finished/VBN -> that/IN (mark)
+Reln: construction/NN -> building/NN (acl:relcl)
+Reln: finished/VBN -> construction/NN (nsubjpass)
+
+Print out Reln b/t clause 2 and clause 3
+Reln: rise/VB -> building/NN (conj:and)
+Reln: building/NN -> be/VB (cop)
+Reln: building/NN -> world/NN (nmod:poss)
+
+Print clause list (polished): 
+Political leaders pledged 
+construction the so-called Freedom Tower 
+which will rise 1,776 feet into the air and be the world 's tallest building 
+will be finished on schedule by the end 2008 
