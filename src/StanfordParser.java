@@ -146,10 +146,6 @@ public class StanfordParser {
 		        indexCount++;
 			}
 			
-			// print word, word type, word index in sentence
-//			for(int i = 0; i < ClauseList2.size(); i++){
-//				ClauseList2.get(i).print();
-//			}
 			
 			//print clause list (unpolished)
 			PrintSentences(ClauseList);
@@ -467,7 +463,7 @@ public class StanfordParser {
 	public int FindProposition(int word_index, Tree clauseTree) {
 		Integer PropositionIndex = word_index;
 		//TODO: get the word node of provided word_index
-		Tree current_node;
+		Tree current_node = new Tree();
 		
 		while(current_node.toString() != "PP") {
 			current_node = clauseTree.parent(current_node);
@@ -476,6 +472,30 @@ public class StanfordParser {
 			}
 		}
 		return PropositionIndex;
+	}
+	
+	//If one clause starts with a proposition representing another noun, replace it with that noun
+	public void ReplacePropositionWithSubject(ArrayList<Clause> clauseList, SemanticGraph graph) {
+		for(Clause clause : clauseList) {
+			if(clause.get(0).tag() == "WDT") {
+				List<SemanticGraphEdge> PropositionEdgeList = graph.incomingEdgeList(clause.get(0));
+				IndexedWord verb = new IndexedWord();
+				IndexedWord subject = new IndexedWord();
+				for(SemanticGraphEdge edge : PropositionEdgeList) {
+					if(edge.getRelation().toString() == "nsubj") {
+						verb = edge.getSource();
+					}
+				}
+				List<SemanticGraphEdge> VerbEdgeList = graph.incomingEdgeList(verb);
+				for(SemanticGraphEdge edge : VerbEdgeList) {
+					if(edge.getRelation().toString() == "acl:relcl") {
+						//TODO: need to check whether getSource() returns a IndexedWord with index
+						subject = edge.getSource();
+					}
+				}
+				clause.set(0, subject);
+			}
+		}
 	}
 }
 

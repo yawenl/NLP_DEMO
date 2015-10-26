@@ -120,5 +120,9 @@ public class Clause {
 		}
 		System.out.println();
 	}
+	
+	public void set(Integer index, IndexedWord word) {
+		wordList.set(index, word);
+	}
 }
 
