@@ -12,7 +12,7 @@ http://nlp.stanford.edu:8080/corenlp/
 Updates:
 
 Oct 24:
-Finished half of FindProposition() function to help creating new clauses based on name annotation.
+- Finished half of FindProposition() function to help creating new clauses based on name annotation.
 Note that CreateClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) takes in 
 index_start and index_end to build new clause based on old existing clauses. index_start should be the 
 index of the proposition before the defined word clause. FindProposition() helps finding index of the 
@@ -29,7 +29,7 @@ These propositions' tags are:
 WDT
 
 Oct 26:
-Finished ReplacePropositionWithSubject(): if one clause starts with a proposition representing another noun, replace it with that noun
+- Finished ReplacePropositionWithSubject(): if one clause starts with a proposition representing another noun, replace it with that noun
 
 Things to do:
 - get the word node of provided word_index in FindProposition() is not finished
