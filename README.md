@@ -39,9 +39,9 @@ Things to do:
 
 
 Oct 27:
-fixed ReplacePropositionWithSubject(); 
-index in IndexedWord is starting from 1 NOT 0;
-getSource() will return a IndexedWord with index.
+- fixed ReplacePropositionWithSubject(); 
+- index in IndexedWord is starting from 1 NOT 0;
+- getSource() will return a IndexedWord with index.
 
 Things to do:
 - Keep debuging FindProposition() and findNerClause().
