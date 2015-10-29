@@ -35,3 +35,12 @@ Things to do:
 - test ReplacePropositionWithSubject()
 - add subject to a clause that does not have one
 - need to check whether getSource() returns a IndexedWord with index (in FindProposition())
+
+Oct 27:
+
+fixed ReplacePropositionWithSubject();
+index in IndexedWord is starting from 1 NOT 0;
+getSource() will return a IndexedWord with index.
+Things to do:
+
+Keep debuging FindProposition() and findNerClause().
