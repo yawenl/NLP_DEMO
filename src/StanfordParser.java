@@ -167,7 +167,6 @@ public class StanfordParser {
 			
 			removeUselessWords(ClauseList2, semanticGraph);
 			
-			
 			System.out.println("\nPrint clause list (polished): ");
 			//print clause list (polished)
 			for(Clause c : ClauseList2) {
@@ -182,10 +181,32 @@ public class StanfordParser {
 			}
 			
 			
+			System.out.println("\nfindNerClause: ");
 			for(Clause c : ClauseList2) {
-				System.out.println(c.wordList().toString());
+//				System.out.println(c.wordList().toString());
 				c.findNerClause();
-				System.out.println(c.nerClauseList().toString());
+//				System.out.println(c.nerClauseList().toString());
+			}
+			
+			System.out.println("\nafter findNerClause: ");
+			for(Clause c : ClauseList2) {
+				c.printWordList();
+			}
+			
+			
+			System.out.println("\nstart CreateClauseFromClause: ");
+			int index = 0;
+			while (index < ClauseList2.size() ) {
+				Clause c = ClauseList2.get(index);
+				for (subNerClause nerClause : c.nerClauseList()) {
+					CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end);
+				}
+				index++;
+			}
+			
+			System.out.println("\nafter CreateClauseFromClause: ");
+			for(Clause c : ClauseList2) {
+				c.printWordList();
 			}
 			
 //			System.out.println("\nFindProposition: ");
@@ -470,7 +491,7 @@ public class StanfordParser {
 	 * @param index_start - starting index of the word
 	 * @param index_end - ending index of the word
 	 */
-	public void CreateClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) {
+	public void CreateClauseFromClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) {
 		Integer list_start_index = -1;
 		Integer clause_start_index = -1;
 		for(int i=0; i < ClauseList.size(); i++) {
@@ -487,40 +508,43 @@ public class StanfordParser {
 				break;
 		}
 		Clause old_clause = ClauseList.get(list_start_index);
-		Clause new_caluse = new Clause();
+//		old_clause.printWordList();
+		Clause new_clause = new Clause(old_clause);
+//		new_clause.printWordList();
 		for(int i = 0; i <= clause_start_index+(index_end-index_start); ++i) {
-			new_caluse.addIndexedWord(old_clause.get(i));
+			new_clause.addIndexedWord(old_clause.get(i));
 			old_clause.remove(clause_start_index);
 		}
 		ClauseList.set(list_start_index, old_clause);
-		ClauseList.add(list_start_index, new_caluse);
+		ClauseList.add(list_start_index, new_clause);
+		ClauseList.get(list_start_index).printWordList();
 	}
 	
-	public int FindProposition(int word_index, Tree clauseTree, Tree constituencyTree) {
-		Integer PropositionIndex = word_index;
-		//TODO: get the word node of provided word_index
-		Tree parent_node = clauseTree.parent(constituencyTree);
-		
-		while(!getLabelString(parent_node).equals("PP")) {
-			parent_node = parent_node.parent(constituencyTree);
-//			if(current_node.isLeaf()) {
-//				PropositionIndex--;
+//	public int FindProposition(int word_index, Tree clauseTree, Tree constituencyTree) {
+//		Integer PropositionIndex = word_index;
+//		//TODO: get the word node of provided word_index
+//		Tree parent_node = clauseTree.parent(constituencyTree);
+//		
+//		while(!getLabelString(parent_node).equals("PP")) {
+//			parent_node = parent_node.parent(constituencyTree);
+////			if(current_node.isLeaf()) {
+////				PropositionIndex--;
+////			}
+//		}
+//		
+//		// find prepositionIndex 
+//		int count = 0;
+//		for (Tree node : parent_node) {
+//			if(node.isLeaf()) {
+//				count++;
 //			}
-		}
-		
-		// find prepositionIndex 
-		int count = 0;
-		for (Tree node : parent_node) {
-			if(node.isLeaf()) {
-				count++;
-			}
-			if (node.equals(clauseTree)) {
-				break;
-			}
-		}
-		PropositionIndex -= count;
-		return PropositionIndex;
-	}
+//			if (node.equals(clauseTree)) {
+//				break;
+//			}
+//		}
+//		PropositionIndex -= count;
+//		return PropositionIndex;
+//	}
 	
 	//If one clause starts with a proposition representing another noun, replace it with that noun
 		public void ReplacePropositionWithSubject(ArrayList<Clause> clauseList, SemanticGraph graph) {
@@ -556,7 +580,8 @@ public class StanfordParser {
 					for(SemanticGraphEdge edge : PropositionEdgeList) {
 //						System.out.println("edge is " + edge.getRelation().toString());
 //						System.out.println("edge.getDependent().index() " + edge.getDependent().index());
-						if(edge.getRelation().toString().equals("nsubj")) {
+						if(edge.getRelation().toString().equals("nsubj") || 
+								edge.getRelation().toString().equals("nsubjpass")) {
 							verb = edge.getGovernor();
 //							System.out.println("verb " + verb);
 						}
