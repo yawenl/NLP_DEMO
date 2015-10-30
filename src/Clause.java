@@ -22,7 +22,7 @@ public class Clause {
 	}
 	
 	public Clause(Clause clause) {
-		this.wordList = clause.wordList;
+		this.wordList = new ArrayList<IndexedWord>(clause.wordList);
 		this.nerClauseList = new ArrayList<subNerClause>();
 		for (subNerClause NerClause : clause.nerClauseList()) {
 			this.nerClauseList.add(NerClause);
@@ -67,7 +67,9 @@ public class Clause {
 	}
 	
 	public void remove(Integer index) {
+		System.out.println("/nafter remove word:");
 		wordList.remove(index);
+		printWordList();
 	}
 	
 	public boolean equals(Clause clause) {
