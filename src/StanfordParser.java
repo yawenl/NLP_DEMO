@@ -196,11 +196,18 @@ public class StanfordParser {
 			
 			System.out.println("\nstart CreateClauseFromClause: ");
 			int index = 0;
+			ArrayList<Clause> NewClauses = new ArrayList<Clause>();
 			while (index < ClauseList2.size() ) {
 				Clause c = ClauseList2.get(index);
 				for (subNerClause nerClause : c.nerClauseList()) {
-					CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end);
+					NewClauses.add(CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end));
 				}
+				System.out.println(index);
+				index++;
+			}
+			index = 0; // loop through NewClauses
+			while(index < NewClauses.size()) {
+				ClauseList2.add(NewClauses.get(index));
 				index++;
 			}
 			
@@ -491,7 +498,7 @@ public class StanfordParser {
 	 * @param index_start - starting index of the word
 	 * @param index_end - ending index of the word
 	 */
-	public void CreateClauseFromClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) {
+	public Clause CreateClauseFromClause(ArrayList<Clause> ClauseList, Integer index_start, Integer index_end) {
 		Integer list_start_index = -1;
 		Integer clause_start_index = -1;
 		for(int i=0; i < ClauseList.size(); i++) {
@@ -508,16 +515,31 @@ public class StanfordParser {
 				break;
 		}
 		Clause old_clause = ClauseList.get(list_start_index);
-//		old_clause.printWordList();
-		Clause new_clause = new Clause(old_clause);
-//		new_clause.printWordList();
-		for(int i = 0; i <= clause_start_index+(index_end-index_start); ++i) {
+		
+		old_clause.printWordList();
+		Clause new_clause = new Clause();
+		System.out.println("start index: "+ clause_start_index);
+		for(int i = clause_start_index; i <= clause_start_index+(index_end-index_start); ++i) {
 			new_clause.addIndexedWord(old_clause.get(i));
-			old_clause.remove(clause_start_index);
+
 		}
+		Integer i = clause_start_index;
+		
+		while( i < 8 ) {
+			System.out.println("/n i=" + i);
+			System.out.println("/n i=" + old_clause.wordList().get(i).word());
+			old_clause.remove(i);
+			System.out.println("/nafter remove word:");
+			old_clause.printWordList();
+			i++;
+		}
+
+		System.out.println("New clause: ");
+		new_clause.printWordList();
 		ClauseList.set(list_start_index, old_clause);
-		ClauseList.add(list_start_index, new_clause);
-		ClauseList.get(list_start_index).printWordList();
+//		ClauseList.add(list_start_index, new_clause);
+//		ClauseList.get(list_start_index).printWordList();
+		return new_clause;
 	}
 	
 //	public int FindProposition(int word_index, Tree clauseTree, Tree constituencyTree) {
