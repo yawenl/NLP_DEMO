@@ -45,3 +45,10 @@ Oct 27:
 
 Things to do:
 - Keep debuging FindProposition() and findNerClause().
+
+Oct 29:
+- fix CreateClauseFromClause
+- remove FindProposition()
+
+Things to do:
+- test time clause separation and subj replacement with large test cases.
