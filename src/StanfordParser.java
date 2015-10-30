@@ -202,7 +202,6 @@ public class StanfordParser {
 				for (subNerClause nerClause : c.nerClauseList()) {
 					NewClauses.add(CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end));
 				}
-				System.out.println(index);
 				index++;
 			}
 			index = 0; // loop through NewClauses
@@ -360,17 +359,9 @@ public class StanfordParser {
 			// If a word is found, create a IndexedWord with label equivalent to this word's tag and with
 			// value equivalent to the word string
 			if(first_child!=null && first_child.isLeaf()) {
-				CoreLabel tmp_label = new CoreLabel();
-				
-//				System.out.println("add indexedword into Clause: ");
-				
-				tmp_label.setTag(clause.label().value());
-//				System.out.println("tag: "+clause.label().value());
-				
+				CoreLabel tmp_label = new CoreLabel();		
+				tmp_label.setTag(clause.label().value());	
 				tmp_label.setWord(first_child.label().value());
-//				System.out.println("word: "+first_child.label().value());
-				
-//				System.out.println("index: "+index_counter);
 				tmp_label.setIndex(index_counter+1);
 				index_counter++;	
 				
@@ -518,102 +509,40 @@ public class StanfordParser {
 		
 		old_clause.printWordList();
 		Clause new_clause = new Clause();
-		System.out.println("start index: "+ clause_start_index);
 		for(int i = clause_start_index; i <= clause_start_index+(index_end-index_start); ++i) {
 			new_clause.addIndexedWord(old_clause.get(i));
-
 		}
 		Integer i = clause_start_index;
 		
-		while( i < 8 ) {
-			System.out.println("/n i=" + i);
-			System.out.println("/n i=" + old_clause.wordList().get(i).word());
+		while( i < old_clause.size()) {
 			old_clause.remove(i);
-			System.out.println("/nafter remove word:");
-			old_clause.printWordList();
-			i++;
 		}
 
 		System.out.println("New clause: ");
 		new_clause.printWordList();
 		ClauseList.set(list_start_index, old_clause);
-//		ClauseList.add(list_start_index, new_clause);
-//		ClauseList.get(list_start_index).printWordList();
 		return new_clause;
 	}
 	
-//	public int FindProposition(int word_index, Tree clauseTree, Tree constituencyTree) {
-//		Integer PropositionIndex = word_index;
-//		//TODO: get the word node of provided word_index
-//		Tree parent_node = clauseTree.parent(constituencyTree);
-//		
-//		while(!getLabelString(parent_node).equals("PP")) {
-//			parent_node = parent_node.parent(constituencyTree);
-////			if(current_node.isLeaf()) {
-////				PropositionIndex--;
-////			}
-//		}
-//		
-//		// find prepositionIndex 
-//		int count = 0;
-//		for (Tree node : parent_node) {
-//			if(node.isLeaf()) {
-//				count++;
-//			}
-//			if (node.equals(clauseTree)) {
-//				break;
-//			}
-//		}
-//		PropositionIndex -= count;
-//		return PropositionIndex;
-//	}
-	
 	//If one clause starts with a proposition representing another noun, replace it with that noun
 		public void ReplacePropositionWithSubject(ArrayList<Clause> clauseList, SemanticGraph graph) {
-			
-//			System.out.println("Inside ReplacePropositionWithSubject");
-//			
-//			for (SemanticGraphEdge edge : graph.edgeIterable()) {
-//				System.out.println("edge.getDependent() " + edge.getDependent());
-//				System.out.println("edge.getDependent().index() " + edge.getDependent().index());
-//				System.out.println("edge.getSource() " + edge.getSource());
-//				System.out.println("edge.getSource().index() " + edge.getSource().index());
-//			}
-			
 			for(Clause clause : clauseList) {
-//				System.out.println("Inside clauseList for loop");
-//				System.out.println(clause.get(0).tag());
 				if(clause.get(0).tag().equals("WDT")) {
-//					System.out.println("Inside WDT if");
-//					System.out.println("clause.get(0).tag() " + clause.get(0).tag());
-//					System.out.println("clause.get(0).word() " + clause.get(0).word());
-//					System.out.println("clause.get(0).docID() " + clause.get(0).docID());
-//					System.out.println("clause.get(0).index() " + clause.get(0).index());
-//					System.out.println("clause.get(0) " + clause.get(0).toString());
 					
 					List<SemanticGraphEdge> PropositionEdgeList = graph.incomingEdgeList(clause.get(0));
 					List<SemanticGraphEdge> getOutEdges = graph.getOutEdgesSorted(clause.get(0)); 
 					IndexedWord verb = new IndexedWord();
 					IndexedWord subject = new IndexedWord();
-//					System.out.println("PropositionEdgeList is: ");
-//					System.out.println(PropositionEdgeList.toString());
-//					System.out.println("getOutEdges is: ");
-//					System.out.println(getOutEdges.toString());
 					for(SemanticGraphEdge edge : PropositionEdgeList) {
-//						System.out.println("edge is " + edge.getRelation().toString());
-//						System.out.println("edge.getDependent().index() " + edge.getDependent().index());
 						if(edge.getRelation().toString().equals("nsubj") || 
 								edge.getRelation().toString().equals("nsubjpass")) {
 							verb = edge.getGovernor();
-//							System.out.println("verb " + verb);
 						}
 					}
 					List<SemanticGraphEdge> VerbEdgeList = graph.incomingEdgeList(verb);
 					for(SemanticGraphEdge edge : VerbEdgeList) {
 						if(edge.getRelation().toString().equals("acl:relcl")) {
-							//TODO: need to check whether getSource() returns a IndexedWord with index
 							subject = edge.getGovernor();
-//							System.out.println("subject " + subject);
 						}
 					}
 					clause.set(0, subject);
