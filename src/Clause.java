@@ -67,9 +67,7 @@ public class Clause {
 	}
 	
 	public void remove(Integer index) {
-		System.out.println("/nafter remove word:");
-		wordList.remove(index);
-		printWordList();
+		this.wordList.remove(this.wordList.get(index));
 	}
 	
 	public boolean equals(Clause clause) {
