@@ -22,14 +22,6 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 
-/**
- * A StanfordParser uses constituencyTree and semanticGraph to analyze a given sentence in String.
- * The main function parse will create clauses based on the given text.
- * (Logic goes here)
- * 
- * @author Yawen Luo 
- * @author Qingzhou He
- */
 /*
 testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
 testSentences.add("A senior coalition official in Iraq said the body, which was found by U.S. military police west of Baghdad, appeared to have been thrown from a vehicle");
@@ -43,6 +35,13 @@ testSentences.add("Sunday's election results demonstrated just how far the pendu
 testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
 */
 
+/*Problems due to inaccuracy from semantic graph:
+testSentences.add("South Korean President Roh Moo-hyun Thursday asked the Board of Audit and Inspection (BAI) to investigate questions arising about the Foreign Ministry's response to the kidnapping of a South Korean in Iraq who was later killed by Muslim militants, according to Yonhap."); 
+//"killed"'s acl:relcl relation is pointing to "kidnapping"
+testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year."); //"that" is related to "died", which are in the same clause
+testSentences.add("Merrill Lynch & Co. and Smith Barney, now a unit of Citigroup, in 1998 settled discrimination cases involving hundreds of female employees.");
+testSentences.add("Harvey Weinstein, the co-chairman of Miramax, who was instrumental in popularizing both independent and foreign films with broad audiences, agrees.");*/
+
 public class StanfordParser {
 	public static void main(String[] args) {
 		StanfordParser parser = new StanfordParser();
@@ -50,14 +49,11 @@ public class StanfordParser {
 	
 	
 //		testSentences.add("Clonaid, which claims to have produced 13 cloned babies worldwide, told the Streats daily newspaper two Singaporean couples had signed deals agreeing to pay $200,000 to conceive children through cloning.");
-//		testSentences.add("South Korean President Roh Moo-hyun Thursday asked the Board of Audit and Inspection (BAI) to investigate questions arising about the Foreign Ministry's response to the kidnapping of a South Korean in Iraq who was later killed by Muslim militants, according to Yonhap.");
-//		testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year.");
-//		testSentences.add("Merrill Lynch & Co. and Smith Barney, now a unit of Citigroup, in 1998 settled discrimination cases involving hundreds of female employees.");
-//		testSentences.add("Harvey Weinstein, the co-chairman of Miramax, who was instrumental in popularizing both independent and foreign films with broad audiences, agrees.");
+
 //		testSentences.add("After giving nearly 5,000 people a second chance at life, doctors are celebrating the 25th anniversary of Britian's first heart transplant which was performed at Cambridgeshire's Papworth Hospital in 1979.");
 //		testSentences.add("The so-called \"grandmother hypothesis\", based on studies of African hunter-gatherer groups, suggests that infertile women are vital for successful child-rearing despite being unable to produce children themselves.");
 //		testSentences.add("After watching fireworks yesterday evening in Cedar Rapids, Kerry went to his wife's suburban Pittsburgh farm, where he was expected to hold a barbecue for supporters this afternoon.");
-		testSentences.add("The hostage-takers -- who have identified themselves as members of the Khaled Bin Al-Walid Squadrons, part of the Islamic Army of Iraq -- had issued several deadlines for its demands to be met, only to shift them.");
+//		testSentences.add("The hostage-takers -- who have identified themselves as members of the Khaled Bin Al-Walid Squadrons, part of the Islamic Army of Iraq -- had issued several deadlines for its demands to be met, only to shift them.");
 //		
 //		testSentences.add("Cool, humid weather Sunday helped slow the advance of a fire that caused the evacuation of hundreds of homes and businesses in Alaska's Interior.");
 //		testSentences.add("Twenty-five British police officers are recovering after a day of skirmishes in Belfast, Northern Ireland.");
