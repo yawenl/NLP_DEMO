@@ -30,24 +30,16 @@ import edu.stanford.nlp.util.CoreMap;
  * @author Yawen Luo 
  * @author Qingzhou He
  */
-/*
-  		testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
-		testSentences.add("A senior coalition official in Iraq said the body, which was found by U.S. military police west of Baghdad, appeared to have been thrown from a vehicle");
-		testSentences.add("Paul Bremer, the top U.S. civilian administrator in Iraq, and Iraq's new president, Ghazi al-Yawar, visited the northern Iraqi city of Kirkuk.");
-		testSentences.add("The Philippine Stock Exchange Composite Index rose 0.1 percent to 1573.65.");
-		testSentences.add("The government operations came a day after guerrillas in camouflage fatigues rampaged through the streets of Nazran, Ingushetia's capital, firing rocket-propelled grenades at police stations, taking over checkpoints and setting fire to government buildings.");
-		testSentences.add("The death last year of an 84-year-old man killed while swimming in an Australian canal was one of only four fatal shark attacks around the world in 2003."); 
-		testSentences.add("British and Iranian officials resumed discussions Thursday on the release of eight British navy personnel held in Iran earlier this week.");
-		testSentences.add("Mr. Conway, Iamgold's chief executive officer, said the vote would be close.");
-		testSentences.add("Sunday's election results demonstrated just how far the pendulum of public opinion has swung away from faith in Koizumi's promise to bolster the Japanese economy and make the political system more transparent and responsive to the peoples' needs.");
-testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
-*/
+
 public class StanfordParser {
 	public static void main(String[] args) {
 		StanfordParser parser = new StanfordParser();
 		ArrayList<String> testSentences = new ArrayList<String>();
-
-		
+		testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
+		testSentences.add("A senior coalition official in Iraq said the body, which was found by U.S. military police west of Baghdad, appeared to have been thrown from a vehicle");
+		testSentences.add("Paul Bremer, the top U.S. civilian administrator in Iraq, and Iraq's new president, Ghazi al-Yawar, visited the northern Iraqi city of Kirkuk.");
+		testSentences.add("The Philippine Stock Exchange Composite Index rose 0.1 percent to 1573.65.");
+		testSentences.add("The government operations came a day after guerrillas in camouflage fatigues rampaged through the streets of Nazran, Ingushetia's capital, firing rocket-propelled grenades at police stations, taking over checkpoints and setting fire to government buildings.");
 		testSentences.add("Clonaid, which claims to have produced 13 cloned babies worldwide, told the Streats daily newspaper two Singaporean couples had signed deals agreeing to pay $200,000 to conceive children through cloning.");
 		testSentences.add("South Korean President Roh Moo-hyun Thursday asked the Board of Audit and Inspection (BAI) to investigate questions arising about the Foreign Ministry's response to the kidnapping of a South Korean in Iraq who was later killed by Muslim militants, according to Yonhap.");
 		testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year.");
@@ -57,25 +49,25 @@ public class StanfordParser {
 		testSentences.add("The so-called \"grandmother hypothesis\", based on studies of African hunter-gatherer groups, suggests that infertile women are vital for successful child-rearing despite being unable to produce children themselves.");
 		testSentences.add("After watching fireworks yesterday evening in Cedar Rapids, Kerry went to his wife's suburban Pittsburgh farm, where he was expected to hold a barbecue for supporters this afternoon.");
 		testSentences.add("The hostage-takers -- who have identified themselves as members of the Khaled Bin Al-Walid Squadrons, part of the Islamic Army of Iraq -- had issued several deadlines for its demands to be met, only to shift them.");
-
+		testSentences.add("The death last year of an 84-year-old man killed while swimming in an Australian canal was one of only four fatal shark attacks around the world in 2003.");
 		testSentences.add("Cool, humid weather Sunday helped slow the advance of a fire that caused the evacuation of hundreds of homes and businesses in Alaska's Interior.");
 		testSentences.add("Twenty-five British police officers are recovering after a day of skirmishes in Belfast, Northern Ireland.");
 		testSentences.add("A suicide car bomber detonated early Wednesday near the Green Zone in central Baghdad, killing 10 Iraqis -- seven civilians and three National Guard members.");
 		testSentences.add("Five schoolchildren who were headed to a picnic in a bus were wounded in crossfire between Indian soldiers and suspected rebels who attacked an army convoy on a highway outside Srinagar.");
-
+		testSentences.add("British and Iranian officials resumed discussions Thursday on the release of eight British navy personnel held in Iran earlier this week.");
 		testSentences.add("Freixo also denied that Silva was the peacemaker, saying negotiations were concluded when Silva was sent in by Rio de Janeiro state Gov. Rosinha Matheus, who also is an Evangelical Christian.");
 		testSentences.add("The controversy-racked oil giant Shell has named a new head of finance in an effort to calm nervous shareholders.");
 		testSentences.add("The SPD got just 21.5% of the vote in the European Parliament elections, while the conservative opposition parties polled 44.5%.");
 		testSentences.add("A crowd of Catholic hardliners attacked the officers after yesterday's parades by the Orange Order, the major Protestant brotherhood.");
 		testSentences.add("A virus similar to that causing breast cancer in mice may play a role in causing breast cancer in women, suggesting that not only cancerogens are responsible for the disease.");
 		testSentences.add("Tests on animals showed they could get through the stomach wall and the thin membrane surrounding the stomach called the peritoneum to repair the intestines, liver, pancreas, gall bladder and uterus.");
-
-
+		testSentences.add("Mr. Conway, Iamgold's chief executive officer, said the vote would be close.");
+		testSentences.add("Sunday's election results demonstrated just how far the pendulum of public opinion has swung away from faith in Koizumi's promise to bolster the Japanese economy and make the political system more transparent and responsive to the peoples' needs.");
 		testSentences.add("A local man was impaled five times in a frenzied dash through Pamplona in the most dramatic of bull runs so far this year.");
 		testSentences.add("Most Americans are familiar with the Food Guide Pyramid-- but a lot of people don't understand how to use it and the government claims that the proof is that two out of three Americans are fat.");
 		testSentences.add("Further surprises were revealed in the spacecraft's photographs of a hazy orange Titan -- the largest of Saturn's 31 moons, about the size of the planet Mercury.");
 		testSentences.add("Jessica Litman, a law professor at Michigan's Wayne State University, has specialized in copyright law and Internet law for more than 20 years.");
-		
+		testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
 		
 		PrintStream out;
 		try {
@@ -95,6 +87,7 @@ public class StanfordParser {
 	private StanfordCoreNLP pipeline;
 	int index_counter;
 	List<Integer> start_word_records;
+	ClauseNerRelation rels;
 
 	public StanfordParser() {
 		Properties parserProperties = new Properties();
@@ -122,9 +115,11 @@ public class StanfordParser {
 	public void parse(String text, Integer sentenceIndex) {
 		index_counter = 0;
 		start_word_records = new ArrayList<Integer>();
+		rels = new ClauseNerRelation();
 		String sentence_without_punctuation = text;
 		sentence_without_punctuation = sentence_without_punctuation.replace(",", "");
 		sentence_without_punctuation = sentence_without_punctuation.replace(":", "");
+		sentence_without_punctuation = sentence_without_punctuation.replace("--", "");
 		
 		Annotation annotation = new Annotation(sentence_without_punctuation);
 		pipeline.annotate(annotation);
@@ -168,7 +163,7 @@ public class StanfordParser {
 //			}
 			
 			//print clause list (unpolished)
-//			PrintSentences(ClauseList);
+			PrintSentences(ClauseList);
 			
 			//print all words relations among the sentences
 			PrintRelations(ClauseList2, semanticGraph);
@@ -193,11 +188,11 @@ public class StanfordParser {
 			
 			
 //			System.out.println("\nfindNerClause: ");
-//			for(Clause c : ClauseList2) {
-////				System.out.println(c.wordList().toString());
-//				c.findNerClause();
-////				System.out.println(c.nerClauseList().toString());
-//			}
+			for(Clause c : ClauseList2) {
+//				System.out.println(c.wordList().toString());
+				c.findNerClause();
+//				System.out.println(c.nerClauseList().toString());
+			}
 			
 //			System.out.println("\nafter findNerClause: ");
 //			for(Clause c : ClauseList2) {
@@ -252,6 +247,17 @@ public class StanfordParser {
 		boolean isSINV = getLabelString(node).equals("SINV");
 		boolean isSQ = getLabelString(node).equals("SQ");
 		return isSBAR || isS || isSBARQ || isSINV || isSQ;
+//		return isSBAR || isSBARQ || isSINV || isSQ;
+	}
+	
+	private boolean isClauseStart2(Tree node) {
+		boolean isSBAR = getLabelString(node).equals("SBAR");
+//		boolean isS = getLabelString(node).equals("S");
+		boolean isSBARQ = getLabelString(node).equals("SBARQ");
+		boolean isSINV = getLabelString(node).equals("SINV");
+		boolean isSQ = getLabelString(node).equals("SQ");
+//		return isSBAR || isS || isSBARQ || isSINV || isSQ;
+		return isSBAR || isSBARQ || isSINV || isSQ;
 	}
 	
 	private void deleteNonRootNode(Tree node, Tree constituencyTree) {
@@ -297,7 +303,9 @@ public class StanfordParser {
 				continue;
 			}
 			
-			if (isClauseStart(clause) && !clause.isLeaf()) {
+			if ( ((ClauseList.isEmpty() && isClauseStart(clause)) 
+					|| (!ClauseList.isEmpty() && isClauseStart2(clause))) && !clause.isLeaf()) {
+//			if  (isClauseStart(clause) && !clause.isLeaf()) {
 				//Avoid the case SBAR has a first child S
 				Tree parent = clause.parent(constituencyTree);
 				if (parent != null) {
@@ -340,16 +348,16 @@ public class StanfordParser {
 
 	private void PrintSentences(ArrayList<Tree> ClauseList) {
 		Tree nextClause = null;
-		System.out.println("Print clauses list: ");
+//		System.out.println("Print clauses list: ");
 		for (int i = 0; i < ClauseList.size(); i++) {
 			if (i + 1 < ClauseList.size()) {
 				nextClause = ClauseList.get(i + 1);
 			} else {
 				nextClause = null;
 			}
-			PrintSentence(ClauseList.get(i), nextClause);
+//			PrintSentence(ClauseList.get(i), nextClause);
 		}
-		System.out.println("\n");
+//		System.out.println("\n");
 	}
 
 	/**
@@ -553,6 +561,11 @@ public class StanfordParser {
 //		System.out.println("New clause: ");
 //		new_clause.printWordList();
 		ClauseList.set(list_start_index, old_clause);
+		
+//		System.out.println("RELATION IS : " + new_clause.wordList().get(0).ner());
+		singleNerRelation rel = new singleNerRelation(old_clause, new_clause, new_clause.wordList().get(0).ner());
+		rels.addRelation(rel);
+//		rels.print();
 		return new_clause;
 	}
 	
