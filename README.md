@@ -2,18 +2,23 @@
 
 Also, here are the links to the parser and dependencies. 
 
-http://nlp.stanford.edu/software/corenlp.shtml#Download
-http://nlp.stanford.edu/software/stanford-dependencies.shtml
+- http://nlp.stanford.edu/software/corenlp.shtml#Download
+- http://nlp.stanford.edu/software/stanford-dependencies.shtml
 
 They have a demo online as well.
-http://nlp.stanford.edu:8080/corenlp/
+- http://nlp.stanford.edu:8080/corenlp/
+
+Stanford Typed Dependencies Manual
+- http://nlp.stanford.edu/software/dependencies_manual.pdf
 
 Original StackOverflow post.
-http://stackoverflow.com/questions/26070245/clause-extraction-using-stanford-parser
+- http://stackoverflow.com/questions/26070245/clause-extraction-using-stanford-parser
 
 Berkeley Parser:
-http://tomato.banatao.berkeley.edu:8080/parser/parser.html
+- http://tomato.banatao.berkeley.edu:8080/parser/parser.html
 
+Penn Tree bank
+- http://www.surdeanu.info/mihai/teaching/ista555-fall13/readings/PennTreebankConstituents.html
 
 Updates:
 
