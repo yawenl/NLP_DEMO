@@ -203,19 +203,10 @@ public class StanfordParser {
 			while (index < ClauseList2.size() ) {
 				Clause c = ClauseList2.get(index);
 				for (subNerClause nerClause : c.nerClauseList()) {
-<<<<<<< HEAD
-=======
 //					System.out.println("nerClause.start" + nerClause.start);
 //					System.out.println("nerClause.end" + nerClause.end);
->>>>>>> 4c43e56034981cdf57523623ea22998adc14099b
 					NewClauses.add(CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end));
 				}
-				System.out.println(index);
-				index++;
-			}
-			index = 0; // loop through NewClauses
-			while(index < NewClauses.size()) {
-				ClauseList2.add(NewClauses.get(index));
 				index++;
 			}
 			index = 0; // loop through NewClauses
