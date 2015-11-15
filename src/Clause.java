@@ -32,9 +32,9 @@ public class Clause {
 	public void findNerClause() {
 		subNerClause newNerClause = new subNerClause();
 		for (int i = 0; i < wordList.size(); i++) {
-			System.out.println("wordList.get(i).ner() " + wordList.get(i).ner());
-			System.out.println("wordList.get(i).word() " + wordList.get(i).word());
-			System.out.println("wordList.get(i).tag() " + wordList.get(i).tag());
+//			System.out.println("wordList.get(i).ner() " + wordList.get(i).ner());
+//			System.out.println("wordList.get(i).word() " + wordList.get(i).word());
+//			System.out.println("wordList.get(i).tag() " + wordList.get(i).tag());
 			if (wordList.get(i).ner().equals("DATE")
 					|| wordList.get(i).ner().equals("TIME")
 					 || wordList.get(i).ner().equals("LOCATION")) {
