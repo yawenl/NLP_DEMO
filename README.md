@@ -64,6 +64,7 @@ Nov 15:
 - fixed new ner(location, date, time) clauases insertion order problem
 - add "WP" into preposition replace list; but the SemanticGraph does not always find the accurate acl:relcl relation
 - does not count "mark" as internal clause words relations when removing meaningless prepostions
+- create ClauseNerRelation class to store name entity clause relationships
 - Things to do:
   - Kepp testing sentences after "Clonaid ...."
   - standford online demo shut down today; need to check the clause cut due to name entity later when the online demo works
