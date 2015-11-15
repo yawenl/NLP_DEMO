@@ -1,3 +1,5 @@
 "that" & "who" not deleted
 		
-		
+	testSentences.add("South Korean President Roh Moo-hyun Thursday asked the Board of Audit and Inspection (BAI) to investigate questions arising about the Foreign Ministry's response to the kidnapping of a South Korean in Iraq who was later killed by Muslim militants, according to Yonhap."); 
+	//"killed"'s acl:relcl relation is pointing to "kidnapping"
+	testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year."); //"that" is related to "died", which are in the same clause		
