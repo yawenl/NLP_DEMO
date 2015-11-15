@@ -8,6 +8,9 @@ Also, here are the links to the parser and dependencies.
 They have a demo online as well.
 - http://nlp.stanford.edu:8080/corenlp/
 
+Stanford typed dependencies manual
+- http://nlp.stanford.edu/software/dependencies_manual.pdf
+
 Original StackOverflow post.
 - http://stackoverflow.com/questions/26070245/clause-extraction-using-stanford-parser
 
