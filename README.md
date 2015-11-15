@@ -28,38 +28,42 @@ Note that CreateClause(ArrayList<Clause> ClauseList, Integer index_start, Intege
 index_start and index_end to build new clause based on old existing clauses. index_start should be the 
 index of the proposition before the defined word clause. FindProposition() helps finding index of the 
 proposition.
-
-Things to do:
-- get the word node of provided word_index in FindProposition() is not finished
-- Replace which/that with the actual object
-- Add subject when one clause does not have one
-How: which has a relation (nsubjpass) with the verb
-verb has a relation (acl:relcl) with the subject 
+- Things to do:
+  - get the word node of provided word_index in FindProposition() is not finished
+  - Replace which/that with the actual object
+  - Add subject when one clause does not have one
+  How: which has a relation (nsubjpass) with the verb
+  verb has a relation (acl:relcl) with the subject 
 
 These propositions' tags are:
 WDT
 
 Oct 26:
 - Finished ReplacePropositionWithSubject(): if one clause starts with a proposition representing another noun, replace it with that noun
-
-Things to do:
-- get the word node of provided word_index in FindProposition() is not finished
-- test ReplacePropositionWithSubject()
-- add subject to a clause that does not have one
-- need to check whether getSource() returns a IndexedWord with index (in FindProposition())
+- Things to do:
+  - get the word node of provided word_index in FindProposition() is not finished
+  - test ReplacePropositionWithSubject()
+  - add subject to a clause that does not have one
+  - need to check whether getSource() returns a IndexedWord with index (in FindProposition())
 
 
 Oct 27:
 - fixed ReplacePropositionWithSubject(); 
 - index in IndexedWord is starting from 1 NOT 0;
 - getSource() will return a IndexedWord with index.
-
-Things to do:
-- Keep debuging FindProposition() and findNerClause().
+- Things to do:
+  - Keep debuging FindProposition() and findNerClause().
 
 Oct 29:
 - fix CreateClauseFromClause
 - remove FindProposition()
+- Things to do:
+  - test time clause separation and subj replacement with large test cases.
 
-Things to do:
-- test time clause separation and subj replacement with large test cases.
+Nov 15:
+- fixed new ner(location, date, time) clauases insertion order problem
+- add "WP" into preposition replace list; but the SemanticGraph does not always find the accurate acl:relcl relation
+- does not count "mark" as internal clause words relations when removing meaningless prepostions
+- Things to do:
+  - Kepp testing sentences after "Clonaid ...."
+  - standford online demo shut down today; need to check the clause cut due to name entity later when the online demo works
