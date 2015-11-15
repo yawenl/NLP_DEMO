@@ -22,6 +22,14 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 
+/**
+ * A StanfordParser uses constituencyTree and semanticGraph to analyze a given sentence in String.
+ * The main function parse will create clauses based on the given text.
+ * (Logic goes here)
+ * 
+ * @author Yawen Luo 
+ * @author Qingzhou He
+ */
 /*
 testSentences.add("ABC cites the fact that chemical additives are banned in many countries and feels they may be banned in this state too");
 testSentences.add("A senior coalition official in Iraq said the body, which was found by U.S. military police west of Baghdad, appeared to have been thrown from a vehicle");
@@ -33,6 +41,7 @@ testSentences.add("British and Iranian officials resumed discussions Thursday on
 testSentences.add("Mr. Conway, Iamgold's chief executive officer, said the vote would be close.");
 testSentences.add("Sunday's election results demonstrated just how far the pendulum of public opinion has swung away from faith in Koizumi's promise to bolster the Japanese economy and make the political system more transparent and responsive to the peoples' needs.");
 testSentences.add("Political leaders pledged that construction of the so-called Freedom Tower, which will rise 1,776 feet into the air and be the world's tallest building, will be finished on schedule by the end of 2008");
+//		testSentences.add("Five schoolchildren who were headed to a picnic in a bus were wounded in crossfire between Indian soldiers and suspected rebels who attacked an army convoy on a highway outside Srinagar.");
 */
 
 /*Problems due to inaccuracy from semantic graph:
@@ -58,7 +67,7 @@ public class StanfordParser {
 //		testSentences.add("Cool, humid weather Sunday helped slow the advance of a fire that caused the evacuation of hundreds of homes and businesses in Alaska's Interior.");
 //		testSentences.add("Twenty-five British police officers are recovering after a day of skirmishes in Belfast, Northern Ireland.");
 //		testSentences.add("A suicide car bomber detonated early Wednesday near the Green Zone in central Baghdad, killing 10 Iraqis -- seven civilians and three National Guard members.");
-//		testSentences.add("Five schoolchildren who were headed to a picnic in a bus were wounded in crossfire between Indian soldiers and suspected rebels who attacked an army convoy on a highway outside Srinagar.");
+
 //		
 //		testSentences.add("Freixo also denied that Silva was the peacemaker, saying negotiations were concluded when Silva was sent in by Rio de Janeiro state Gov. Rosinha Matheus, who also is an Evangelical Christian.");
 //		testSentences.add("The controversy-racked oil giant Shell has named a new head of finance in an effort to calm nervous shareholders.");
