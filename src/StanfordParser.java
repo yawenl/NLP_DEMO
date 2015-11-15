@@ -51,13 +51,13 @@ public class StanfordParser {
 	
 //		testSentences.add("Clonaid, which claims to have produced 13 cloned babies worldwide, told the Streats daily newspaper two Singaporean couples had signed deals agreeing to pay $200,000 to conceive children through cloning.");
 //		testSentences.add("South Korean President Roh Moo-hyun Thursday asked the Board of Audit and Inspection (BAI) to investigate questions arising about the Foreign Ministry's response to the kidnapping of a South Korean in Iraq who was later killed by Muslim militants, according to Yonhap.");
-		testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year.");
+//		testSentences.add("The memorandum noted the United Nations estimated that 2.5 million to 3.5 million people died of AIDS last year.");
 //		testSentences.add("Merrill Lynch & Co. and Smith Barney, now a unit of Citigroup, in 1998 settled discrimination cases involving hundreds of female employees.");
 //		testSentences.add("Harvey Weinstein, the co-chairman of Miramax, who was instrumental in popularizing both independent and foreign films with broad audiences, agrees.");
 //		testSentences.add("After giving nearly 5,000 people a second chance at life, doctors are celebrating the 25th anniversary of Britian's first heart transplant which was performed at Cambridgeshire's Papworth Hospital in 1979.");
 //		testSentences.add("The so-called \"grandmother hypothesis\", based on studies of African hunter-gatherer groups, suggests that infertile women are vital for successful child-rearing despite being unable to produce children themselves.");
 //		testSentences.add("After watching fireworks yesterday evening in Cedar Rapids, Kerry went to his wife's suburban Pittsburgh farm, where he was expected to hold a barbecue for supporters this afternoon.");
-//		testSentences.add("The hostage-takers -- who have identified themselves as members of the Khaled Bin Al-Walid Squadrons, part of the Islamic Army of Iraq -- had issued several deadlines for its demands to be met, only to shift them.");
+		testSentences.add("The hostage-takers -- who have identified themselves as members of the Khaled Bin Al-Walid Squadrons, part of the Islamic Army of Iraq -- had issued several deadlines for its demands to be met, only to shift them.");
 //		
 //		testSentences.add("Cool, humid weather Sunday helped slow the advance of a fire that caused the evacuation of hundreds of homes and businesses in Alaska's Interior.");
 //		testSentences.add("Twenty-five British police officers are recovering after a day of skirmishes in Belfast, Northern Ireland.");
@@ -211,18 +211,22 @@ public class StanfordParser {
 //			System.out.println("\nstart CreateClauseFromClause: ");
 			int index = 0;
 			ArrayList<Clause> NewClauses = new ArrayList<Clause>();
+			ArrayList<Integer> NewClausesInsertionPositions = new ArrayList<Integer>();
 			while (index < ClauseList2.size() ) {
 				Clause c = ClauseList2.get(index);
 				for (subNerClause nerClause : c.nerClauseList()) {
 //					System.out.println("nerClause.start" + nerClause.start);
 //					System.out.println("nerClause.end" + nerClause.end);
 					NewClauses.add(CreateClauseFromClause(ClauseList2, nerClause.start, nerClause.end));
+					NewClausesInsertionPositions.add(index);
 				}
 				index++;
 			}
 			index = 0; // loop through NewClauses
+			Integer number_of_new_clauses = 1;
 			while(index < NewClauses.size()) {
-				ClauseList2.add(NewClauses.get(index));
+				ClauseList2.add(NewClausesInsertionPositions.get(index)+number_of_new_clauses, NewClauses.get(index));
+				number_of_new_clauses++;
 				index++;
 			}
 			
@@ -466,8 +470,10 @@ public class StanfordParser {
 		
 		System.out.println("Print all words relations among the sentences:");
 		for(SemanticGraphEdge edge : edgeList) {
-			if(edge!=null)
+			if(edge!=null){
 				System.out.println("Reln: "+edge.toString());
+			}
+				
 		}
 	}
 	
@@ -517,7 +523,16 @@ public class StanfordParser {
 				for (IndexedWord w2 : c1.wordList()){	
 					if ((!w1.equals(w2)) && graph.containsVertex(w1) && graph.containsVertex(w2) &&
 							(graph.containsEdge(w1, w2) || graph.containsEdge(w2, w1)) ) {
+						
 						findReln = true;
+						if (graph.containsEdge(w1, w2)) {
+							if (graph.reln(w1, w2).toString().equals("mark"))
+								findReln = false;
+						}
+						if (graph.containsEdge(w2, w1)) {
+							if (graph.reln(w2, w1).toString().equals("mark"))
+								findReln = false;
+						}
 					}
 				} // end for w2
 				if(!findReln) {
@@ -578,11 +593,11 @@ public class StanfordParser {
 	}
 	
 	//If one clause starts with a proposition representing another noun, replace it with that noun
-		public void ReplacePropositionWithSubject(ArrayList<Clause> clauseList, SemanticGraph graph) {
+	public void ReplacePropositionWithSubject(ArrayList<Clause> clauseList, SemanticGraph graph) {
 			for(Clause clause : clauseList) {
-//				if(!clause.wordList().isEmpty() && (clause.get(0).tag().equals("WDT") || 
-//						clause.get(0).tag().equals("WP"))) {
-				if(!clause.wordList().isEmpty() && clause.get(0).tag().equals("WDT")) {
+				if(!clause.wordList().isEmpty() && (clause.get(0).tag().equals("WDT") || 
+						clause.get(0).tag().equals("WP"))) {
+//				if(!clause.wordList().isEmpty() && clause.get(0).tag().equals("WDT")) {
 					
 					List<SemanticGraphEdge> PropositionEdgeList = graph.incomingEdgeList(clause.get(0));
 //					List<SemanticGraphEdge> getOutEdges = graph.getOutEdgesSorted(clause.get(0)); 
