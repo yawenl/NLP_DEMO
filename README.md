@@ -68,3 +68,8 @@ Nov 15:
 - Things to do:
   - Kepp testing sentences after "Clonaid ...."
   - standford online demo shut down today; need to check the clause cut due to name entity later when the online demo works
+
+
+Nov 25:
+- Things to do:
+  - If a clause starts with a verb, algo should automatically find the subj for the verb and insert the subj at the beginnning of the clause.
